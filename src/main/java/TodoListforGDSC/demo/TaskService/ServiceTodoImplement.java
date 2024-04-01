@@ -20,8 +20,14 @@ public class ServiceTodoImplement implements ServiceInterface {
     public void deleteTask(Long id){
         repoInterface.deleteById(id);
     }
-    public TaskEntity updateTask(TaskEntity task){
+
+    public TaskEntity updateTask(TaskEntity task, Long id) {
+        task.setId(id);
         return  repoInterface.save(task);
+    }
+
+    public boolean exist(Long id) {
+        return repoInterface.existsById(id);
     }
 
 

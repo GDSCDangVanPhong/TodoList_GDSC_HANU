@@ -1,10 +1,13 @@
 package TodoListforGDSC.demo.TaskEntity;
 
 import jakarta.persistence.*;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @jakarta.persistence.Entity
 @Table(name = "Bảng họạt động")
 public class TaskEntity {
@@ -16,4 +19,11 @@ public class TaskEntity {
     @Column
     private String detail;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
