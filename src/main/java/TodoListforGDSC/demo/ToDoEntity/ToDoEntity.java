@@ -1,4 +1,4 @@
-package TodoListforGDSC.demo.TaskEntity;
+package TodoListforGDSC.demo.ToDoEntity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @jakarta.persistence.Entity
 @Table(name = "Bảng họạt động")
-public class TaskEntity {
+public class ToDoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

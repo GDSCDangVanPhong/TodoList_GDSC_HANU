@@ -1,19 +1,21 @@
-package TodoListforGDSC.demo.TaskService;
+package TodoListforGDSC.demo.ToDoService;
 
-import TodoListforGDSC.demo.TaskEntity.TaskEntity;
-import TodoListforGDSC.demo.TaskRepository.RepoInterface;
+import TodoListforGDSC.demo.ToDoEntity.ToDoEntity;
+import TodoListforGDSC.demo.ToDoRepository.RepoInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class ServiceTodoImplement implements ServiceInterface {
+public class TodoServiceImplement implements ServiceInterface {
     @Autowired
     private RepoInterface repoInterface;
-    public TaskEntity postTask(TaskEntity task){
+
+    public ToDoEntity postTask(ToDoEntity task) {
         return repoInterface.save(task);
     }
-    public List<TaskEntity> showAllTask(){
+
+    public List<ToDoEntity> showAllTask() {
         return repoInterface.findAll();
     }
 
@@ -21,7 +23,7 @@ public class ServiceTodoImplement implements ServiceInterface {
         repoInterface.deleteById(id);
     }
 
-    public TaskEntity updateTask(TaskEntity task, Long id) {
+    public ToDoEntity updateTask(ToDoEntity task, Long id) {
         task.setId(id);
         return  repoInterface.save(task);
     }

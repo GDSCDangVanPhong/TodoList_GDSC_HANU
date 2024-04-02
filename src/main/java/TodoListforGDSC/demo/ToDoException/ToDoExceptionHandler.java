@@ -1,4 +1,4 @@
-package TodoListforGDSC.demo.TaskException;
+package TodoListforGDSC.demo.ToDoException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import static org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
 @RestControllerAdvice
-public class TaskExceptionHandler {
+public class ToDoExceptionHandler {
     @ExceptionHandler(TaskNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleTaskNotFoundException(NotFoundException exception) {
-        return new ErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage());
+    public ToDoErrorResponse handleTaskNotFoundException(NotFoundException exception) {
+        return new ToDoErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage());
     }
 
 }
