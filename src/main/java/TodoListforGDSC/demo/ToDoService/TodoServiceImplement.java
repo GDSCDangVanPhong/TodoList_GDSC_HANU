@@ -1,15 +1,15 @@
 package TodoListforGDSC.demo.ToDoService;
 
 import TodoListforGDSC.demo.ToDoEntity.ToDoEntity;
-import TodoListforGDSC.demo.ToDoRepository.RepoInterface;
+import TodoListforGDSC.demo.ToDoRepository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @org.springframework.stereotype.Service
-public class TodoServiceImplement implements ServiceInterface {
+public class TodoServiceImplement implements TodoServiceInterface {
     @Autowired
-    private RepoInterface repoInterface;
+    private TodoRepository repoInterface;
 
     public ToDoEntity postTask(ToDoEntity task) {
         return repoInterface.save(task);

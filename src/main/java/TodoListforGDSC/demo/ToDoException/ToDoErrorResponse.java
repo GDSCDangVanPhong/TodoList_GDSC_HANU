@@ -4,10 +4,20 @@ import org.springframework.http.HttpStatus;
 
 
 public class ToDoErrorResponse {
-    private HttpStatus httpStatus;
-    private String message;
+    private final HttpStatus httpStatus;
+    private final String message;
 
 
     public ToDoErrorResponse(HttpStatus httpStatus, String message) {
+        this.httpStatus = httpStatus;
+        this.message = message;
+    }
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }
