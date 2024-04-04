@@ -1,4 +1,4 @@
-package TodoListforGDSC.demo.share;
+package TodoListforGDSC.demo.ToDoBodyResponse;
 
 import lombok.Getter;
 import lombok.Setter;
