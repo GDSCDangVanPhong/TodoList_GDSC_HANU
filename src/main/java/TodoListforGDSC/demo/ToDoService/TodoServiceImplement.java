@@ -9,27 +9,27 @@ import java.util.List;
 @org.springframework.stereotype.Service
 public class TodoServiceImplement implements TodoServiceInterface {
     @Autowired
-    private TodoRepository repoInterface;
+    private TodoRepository ToDoRepositoryInterface;
 
     public ToDoEntity postTask(ToDoEntity task) {
-        return repoInterface.save(task);
+        return ToDoRepositoryInterface.save(task);
     }
 
     public List<ToDoEntity> showAllTask() {
-        return repoInterface.findAll();
+        return ToDoRepositoryInterface.findAll();
     }
 
     public void deleteTask(Long id){
-        repoInterface.deleteById(id);
+        ToDoRepositoryInterface.deleteById(id);
     }
 
     public ToDoEntity updateTask(ToDoEntity task, Long id) {
         task.setId(id);
-        return  repoInterface.save(task);
+        return ToDoRepositoryInterface.save(task);
     }
 
     public boolean exist(Long id) {
-        return repoInterface.existsById(id);
+        return ToDoRepositoryInterface.existsById(id);
     }
 
 

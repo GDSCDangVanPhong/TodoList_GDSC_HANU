@@ -1,26 +1,21 @@
-package TodoListforGDSC.demo.ToDoException;
+package TodoListforGDSC.demo.share;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Getter
+@Setter
+public class ToDoResponseHandler {
+    private String message;
+    private Object data;
 
-public class ToDoErrorResponse {
+    private String code;
 
-    private final String message;
-
-
-    public ToDoErrorResponse(String message) {
-
-        this.message = message;
-    }
-
-
-    public String getMessage() {
-        return message;
-    }
 
     public static ResponseEntity<Object> ToDoResponseBody(String msg, String code, Object TodoObject, HttpStatus httpStatus) {
 
@@ -30,4 +25,5 @@ public class ToDoErrorResponse {
         ToDoResponse.put("code: ", code);
         return new ResponseEntity<Object>(ToDoResponse, httpStatus);
     }
+
 }
