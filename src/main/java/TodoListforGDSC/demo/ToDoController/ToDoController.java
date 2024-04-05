@@ -26,7 +26,7 @@ public class ToDoController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<Object> postNew(@RequestBody ToDoEntity task) {
         todoService.postTask(task);
-        return ResponseEntity.ok("");
+        return ToDoResponseHandler.ToDoResponseBody("Post task successfully!", "SUCCESS", task.getId(), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -40,7 +40,7 @@ public class ToDoController {
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<?> deleteTask(@PathVariable Long id) {
+    private ResponseEntity<Object> deleteTask(@PathVariable Long id) {
         if (!todoService.exist(id)) {
             throw new TaskNotFoundException();
         } else {
