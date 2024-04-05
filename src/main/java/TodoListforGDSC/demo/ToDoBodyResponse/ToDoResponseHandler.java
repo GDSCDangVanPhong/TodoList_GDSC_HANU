@@ -18,7 +18,6 @@ public class ToDoResponseHandler {
 
 
     public static ResponseEntity<Object> ToDoResponseBody(String msg, String code, Object TodoObject, HttpStatus httpStatus) {
-
         Map<String, Object> ToDoResponse = new HashMap<>();
         ToDoResponse.put("message: ", msg);
         ToDoResponse.put("data: ", TodoObject);

@@ -27,26 +27,25 @@ public class ToDoController {
     private ResponseEntity<Object> postNew(@RequestBody ToDoEntity task) {
         todoService.postTask(task);
         return ResponseEntity.ok("");
-
     }
 
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<?> updateTask(@RequestBody ToDoEntity task, @PathVariable Long id) {
+    private ResponseEntity<Object> updateTask(@RequestBody ToDoEntity task, @PathVariable Long id) {
         if (!todoService.exist(id)) {
-            throw new TaskNotFoundException("The task with ID :" + id + " is not existing !");
+            throw new TaskNotFoundException();
         } else {
             todoService.updateTask(task, id);
-            return ResponseEntity.ok("Update task successfully!");
+            return ToDoResponseHandler.ToDoResponseBody("Update task successfully!", "SUCCESS", null, HttpStatus.CREATED);
         }
     }
 
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<?> deleteTask(@PathVariable Long id) {
         if (!todoService.exist(id)) {
-            throw new TaskNotFoundException("The task with ID :" + id + " is not existing !");
+            throw new TaskNotFoundException();
         } else {
             todoService.deleteTask(id);
-            return ResponseEntity.ok("Delete task successfully !");
+            return ToDoResponseHandler.ToDoResponseBody("Delete task successfully", "SUCCESS", null, HttpStatus.OK);
         }
     }
 

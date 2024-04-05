@@ -14,6 +14,4 @@ public class ToDoExceptionHandler {
     public ResponseEntity<Object> handleTaskNotFoundException() {
         return ToDoResponseHandler.ToDoResponseBody("Task not found", "NOT_FOUND", null, HttpStatus.NOT_FOUND);
     }
-
-
 }
