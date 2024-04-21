@@ -1,6 +1,6 @@
-package TodoListforGDSC.demo.ToDoRepository;
+package TodoListforGDSC.demo.ToDoList.ToDoRepository;
 
-import TodoListforGDSC.demo.ToDoEntity.ToDoEntity;
+import TodoListforGDSC.demo.ToDoList.ToDoEntity.ToDoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

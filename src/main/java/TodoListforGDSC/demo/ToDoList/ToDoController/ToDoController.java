@@ -1,9 +1,9 @@
-package TodoListforGDSC.demo.ToDoController;
+package TodoListforGDSC.demo.ToDoList.ToDoController;
 
-import TodoListforGDSC.demo.ToDoBodyResponse.ToDoResponseHandler;
-import TodoListforGDSC.demo.ToDoEntity.ToDoEntity;
-import TodoListforGDSC.demo.ToDoException.TaskNotFoundException;
-import TodoListforGDSC.demo.ToDoService.TodoServiceInterface;
+import TodoListforGDSC.demo.ToDoList.ToDoBodyResponse.ToDoResponseHandler;
+import TodoListforGDSC.demo.ToDoList.ToDoEntity.ToDoEntity;
+import TodoListforGDSC.demo.ToDoList.ToDoException.TaskNotFoundException;
+import TodoListforGDSC.demo.ToDoList.ToDoService.TodoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,7 +38,6 @@ public class ToDoController {
             return ToDoResponseHandler.ToDoResponseBody("Update task successfully!", "SUCCESS", null, HttpStatus.CREATED);
         }
     }
-
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     private ResponseEntity<Object> deleteTask(@PathVariable Long id) {
         if (!todoService.exist(id)) {

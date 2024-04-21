@@ -1,15 +1,20 @@
-package TodoListforGDSC.demo.ToDoService;
+package TodoListforGDSC.demo.ToDoList.ToDoService;
 
-import TodoListforGDSC.demo.ToDoEntity.ToDoEntity;
-import TodoListforGDSC.demo.ToDoRepository.TodoRepository;
+import TodoListforGDSC.demo.ToDoList.ToDoEntity.ToDoEntity;
+import TodoListforGDSC.demo.ToDoList.ToDoRepository.TodoRepository;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 @org.springframework.stereotype.Service
 public class TodoServiceImplement implements TodoServiceInterface {
     @Autowired
-    private TodoRepository ToDoRepositoryInterface;
+    private final TodoRepository ToDoRepositoryInterface;
 
     public ToDoEntity postTask(ToDoEntity task) {
         return ToDoRepositoryInterface.save(task);

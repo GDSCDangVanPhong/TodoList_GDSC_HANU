@@ -1,9 +1,11 @@
-package TodoListforGDSC.demo.ToDoService;
+package TodoListforGDSC.demo.ToDoList.ToDoService;
 
-import TodoListforGDSC.demo.ToDoEntity.ToDoEntity;
+import TodoListforGDSC.demo.ToDoList.ToDoEntity.ToDoEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface TodoServiceInterface {
     ToDoEntity postTask(ToDoEntity task);
 

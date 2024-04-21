@@ -1,13 +1,15 @@
-package TodoListforGDSC.demo.ToDoBodyResponse;
+package TodoListforGDSC.demo.ToDoList.ToDoBodyResponse;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Service
 @Getter
 @Setter
 public class ToDoResponseHandler {
@@ -18,11 +20,12 @@ public class ToDoResponseHandler {
 
 
     public static ResponseEntity<Object> ToDoResponseBody(String msg, String code, Object TodoObject, HttpStatus httpStatus) {
-        Map<String, Object> ToDoResponse = new HashMap<>();
-        ToDoResponse.put("message: ", msg);
-        ToDoResponse.put("data: ", TodoObject);
+        Map<String, Object> ToDoResponse = new LinkedHashMap<>();
         ToDoResponse.put("code: ", code);
-        return new ResponseEntity<Object>(ToDoResponse, httpStatus);
+        ToDoResponse.put("data: ", TodoObject);
+        ToDoResponse.put("message: ", msg);
+        return new ResponseEntity<>(ToDoResponse, httpStatus);
     }
+
 
 }

@@ -1,4 +1,4 @@
-package TodoListforGDSC.demo.ToDoEntity;
+package TodoListforGDSC.demo.ToDoList.ToDoEntity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
