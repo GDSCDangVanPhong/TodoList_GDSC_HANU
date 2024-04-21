@@ -50,7 +50,7 @@ public class SecurityConfiguration {
             Optional<UserEntity> userOptional = userRepositoryInterface.findByUsername(username);
             if (userOptional.isPresent()) {
                 UserEntity userEntity = userOptional.get();
-                return userEntity; // Trả về đối tượng UserEntity, vì nó đã triển khai UserDetails
+                return userEntity;
             } else {
                 throw new UsernameNotFoundException("User not found with username: " + username);
             }
