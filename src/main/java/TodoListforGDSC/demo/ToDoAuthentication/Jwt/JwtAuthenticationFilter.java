@@ -1,7 +1,5 @@
 package TodoListforGDSC.demo.ToDoAuthentication.Jwt;
 
-import TodoListforGDSC.demo.ToDoAuthentication.Exception.JwtIsExpiredException;
-import TodoListforGDSC.demo.ToDoAuthentication.Exception.JwtIsInvalidException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,12 +41,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         username = jwtService.extractUserName(jwt);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails user = this.userDetailsService.loadUserByUsername(username);
-            if (jwtService.isTokenExpired(jwt)) {
-                throw new JwtIsExpiredException();
-            }
-            if (!jwtService.isTokenValid(jwt, user)) {
-                throw new JwtIsInvalidException();
-            }
             if (jwtService.isTokenValid(jwt, user)) {
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         user,

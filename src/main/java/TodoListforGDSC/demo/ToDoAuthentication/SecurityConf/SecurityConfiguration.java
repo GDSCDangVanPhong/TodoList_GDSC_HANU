@@ -75,5 +75,5 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    // JwtAuthenticationFilter as a component scan bean should be already created, ensure it's not created twice
+
 }
