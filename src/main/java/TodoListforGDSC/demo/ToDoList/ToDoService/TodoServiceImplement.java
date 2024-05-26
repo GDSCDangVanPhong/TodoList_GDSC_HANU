@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.time.LocalDateTime;
@@ -26,7 +27,8 @@ public class TodoServiceImplement implements TodoServiceInterface {
     public List<ToDoEntity> searchTask(String title,
                                        LocalDateTime createdBefore,
                                        LocalDateTime createdAfter,
-                                       String status) {
+                                       String status,
+                                       String sortDirection) {
         Specification<ToDoEntity> spec =Specification.where(null);
         if (title != null && !title.isEmpty()) {
             spec = spec.and(TaskSpecification.hasTitle(title));
@@ -40,7 +42,11 @@ public class TodoServiceImplement implements TodoServiceInterface {
         if (createdBefore != null) {
             spec = spec.and(TaskSpecification.createdBefore(createdBefore));
         }
-        return ToDoRepositoryInterface.findAll(spec);
+        Sort sort = Sort.by(Sort.Direction.ASC,"time");
+        if("desc".equalsIgnoreCase(sortDirection)){
+            sort= Sort.by(Sort.Direction.DESC,"time");
+        }
+        return ToDoRepositoryInterface.findAll(spec, sort);
 
     }
 

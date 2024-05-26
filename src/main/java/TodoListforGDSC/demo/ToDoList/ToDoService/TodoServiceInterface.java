@@ -10,7 +10,7 @@ import java.util.List;
 public interface TodoServiceInterface {
     ToDoEntity postTask(ToDoEntity task);
 
-    List<ToDoEntity> searchTask(String title, LocalDateTime createdBefore, LocalDateTime createdAfter, String status);
+    List<ToDoEntity> searchTask(String title, LocalDateTime createdBefore, LocalDateTime createdAfter, String status, String sortDirection);
 
     void deleteTask(Long id);
 

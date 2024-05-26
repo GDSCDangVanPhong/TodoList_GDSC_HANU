@@ -25,7 +25,8 @@ public class ToDoController {
     private ResponseEntity<Object> searchTask(@RequestParam(required = false) String title,
                                               @RequestParam(required = false) String createdBefore,
                                               @RequestParam(required = false) String createdAfter,
-                                              @RequestParam(required = false )String status) {
+                                              @RequestParam(required = false )String status,
+                                              @RequestParam(required = false)String sortDirection) {
         LocalDateTime createdBeforeDate = null;
         LocalDateTime createdAfterDate = null;
 
@@ -35,7 +36,10 @@ public class ToDoController {
         if (createdAfter != null && !createdAfter.isEmpty()) {
             createdAfterDate = LocalDateTime.parse(createdAfter, DateTimeFormatter.ISO_DATE_TIME);
         }
-        return ToDoResponseHandler.ToDoResponseBody("Get all tasks successfully", "SUCCESS", todoService.searchTask(title, createdBeforeDate, createdAfterDate, status), HttpStatus.OK);
+        return ToDoResponseHandler.ToDoResponseBody("Get all tasks successfully",
+                "SUCCESS",
+                todoService.searchTask(title, createdBeforeDate, createdAfterDate, status, sortDirection),
+                HttpStatus.OK);
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
