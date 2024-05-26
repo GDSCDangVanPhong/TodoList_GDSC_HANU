@@ -1,4 +1,4 @@
-package TodoListforGDSC.demo.ToDoAuthentication.Exception;
+package TodoListforGDSC.demo.share;
 
 public class UserNotFoundException extends RuntimeException {
 }

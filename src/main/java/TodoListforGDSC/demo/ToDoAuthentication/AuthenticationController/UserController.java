@@ -1,7 +1,7 @@
 package TodoListforGDSC.demo.ToDoAuthentication.AuthenticationController;
 
 
-import TodoListforGDSC.demo.ToDoAuthentication.Jwt.JwtService;
+import TodoListforGDSC.demo.ToDoAuthentication.SecurityConf.SecurityConfiguration;
 import TodoListforGDSC.demo.ToDoAuthentication.UserEntity.UserService;
 import TodoListforGDSC.demo.ToDoAuthentication.UserRepository.UserRepositoryInterface;
 import TodoListforGDSC.demo.ToDoAuthentication.UserService.UserServiceInterface;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final AuthenticationManager authenticationManager;
     private final ToDoResponseHandler toDoResponseHandler;
-    private final JwtService jwtService;
+    private final SecurityConfiguration.JwtService jwtService;
     private final UserService userService;
     @Autowired
     private UserRepositoryInterface userRepositoryInterface;

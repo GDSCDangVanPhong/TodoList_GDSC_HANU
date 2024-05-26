@@ -1,4 +1,4 @@
-package TodoListforGDSC.demo.ToDoList.ToDoException;
+package TodoListforGDSC.demo.share;
 
 public class TaskNotFoundException extends RuntimeException {
 

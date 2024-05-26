@@ -1,9 +1,6 @@
-package TodoListforGDSC.demo.ToDoList.ToDoException;
+package TodoListforGDSC.demo.share;
 
 
-import TodoListforGDSC.demo.ToDoAuthentication.Exception.JwtIsExpiredException;
-import TodoListforGDSC.demo.ToDoAuthentication.Exception.JwtIsInvalidException;
-import TodoListforGDSC.demo.ToDoAuthentication.Exception.UserNotFoundException;
 import TodoListforGDSC.demo.ToDoList.ToDoBodyResponse.ToDoResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

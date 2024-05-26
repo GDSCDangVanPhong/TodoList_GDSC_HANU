@@ -2,8 +2,9 @@ package TodoListforGDSC.demo.ToDoAuthentication.UserService;
 
 import TodoListforGDSC.demo.ToDoAuthentication.AuthenticationController.LoginRequest;
 import TodoListforGDSC.demo.ToDoAuthentication.AuthenticationController.RegisterRequest;
-import TodoListforGDSC.demo.ToDoAuthentication.Exception.UserNotFoundException;
-import TodoListforGDSC.demo.ToDoAuthentication.Jwt.JwtService;
+
+import TodoListforGDSC.demo.ToDoAuthentication.SecurityConf.SecurityConfiguration;
+import TodoListforGDSC.demo.share.UserNotFoundException;
 import TodoListforGDSC.demo.ToDoAuthentication.UserEntity.UserEntity;
 import TodoListforGDSC.demo.ToDoAuthentication.UserEntity.UserService;
 import TodoListforGDSC.demo.ToDoAuthentication.UserRepository.UserRepositoryInterface;
@@ -26,7 +27,7 @@ public class UserServiceImplement implements UserServiceInterface {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private JwtService jwtService;
+    private SecurityConfiguration.JwtService jwtService;
     @Autowired
     private UserService userService;
 
