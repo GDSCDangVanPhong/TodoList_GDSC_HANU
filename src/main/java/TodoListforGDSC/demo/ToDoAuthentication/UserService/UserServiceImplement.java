@@ -1,9 +1,12 @@
 package TodoListforGDSC.demo.ToDoAuthentication.UserService;
 
 import TodoListforGDSC.demo.ToDoAuthentication.AuthenticationController.LoginRequest;
+import TodoListforGDSC.demo.ToDoAuthentication.AuthenticationController.LogoutRequest;
 import TodoListforGDSC.demo.ToDoAuthentication.AuthenticationController.RegisterRequest;
 
 import TodoListforGDSC.demo.ToDoAuthentication.SecurityConf.SecurityConfiguration;
+import TodoListforGDSC.demo.ToDoAuthentication.UserEntity.JwtEntity;
+import TodoListforGDSC.demo.ToDoAuthentication.UserRepository.JwtRepositoryInterface;
 import TodoListforGDSC.demo.share.UserNotFoundException;
 import TodoListforGDSC.demo.ToDoAuthentication.UserEntity.UserEntity;
 import TodoListforGDSC.demo.ToDoAuthentication.UserEntity.UserService;
@@ -20,6 +23,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImplement implements UserServiceInterface {
     @Autowired
@@ -27,9 +32,13 @@ public class UserServiceImplement implements UserServiceInterface {
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
-    private SecurityConfiguration.JwtService jwtService;
+    private JwtService jwtService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private tokenService tokenService;
+    @Autowired
+    private JwtRepositoryInterface jwtRepositoryInterface;
 
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         try {
@@ -38,9 +47,22 @@ public class UserServiceImplement implements UserServiceInterface {
             Authentication authenticationResponse =
                     this.authenticationManager.authenticate(authenticationRequest);
             UserEntity user = (UserEntity) userService.loadUserByUsername(loginRequest.getUsername());
+            JwtEntity jwtEntity = new JwtEntity();
+            String token =jwtService.generateToken(user);
+            Optional<JwtEntity> userTokenOptional = jwtRepositoryInterface.findByUsername(user.getUsername());
+            JwtEntity userToken;
+            if (userTokenOptional.isPresent()) {
+                userToken =userTokenOptional.get();
+                userToken.setJwt(token);
+            } else {
+                userToken = new JwtEntity();
+                userToken.setUsername(user.getUsername());
+                userToken.setJwt(token);
+            }
+            jwtRepositoryInterface.save(userToken);
             return ToDoResponseHandler.ToDoResponseBody("Login Successfully"
                     , "SUCCESS"
-                    , jwtService.generateToken(user)
+                    , token
                     , HttpStatus.OK);
         } catch (UsernameNotFoundException ex) {
             throw new UserNotFoundException();
@@ -57,5 +79,12 @@ public class UserServiceImplement implements UserServiceInterface {
                 , "SUCCESS"
                 , user
                 , HttpStatus.CREATED);
+    }
+    public ResponseEntity<Object> logout(@RequestBody LogoutRequest request){
+        tokenService.deleteToken(request);
+        return ToDoResponseHandler.ToDoResponseBody("Logout successfully",
+                "SUCCESS",
+                null,
+                HttpStatus.OK);
     }
 }
