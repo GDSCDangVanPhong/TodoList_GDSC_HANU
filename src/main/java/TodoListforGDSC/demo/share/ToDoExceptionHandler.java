@@ -1,7 +1,7 @@
 package TodoListforGDSC.demo.share;
 
 
-import TodoListforGDSC.demo.ToDoList.ToDoBodyResponse.ToDoResponseHandler;
+import TodoListforGDSC.demo.todolist.ToDoBodyResponse.ToDoResponseHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
